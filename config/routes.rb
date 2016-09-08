@@ -1,17 +1,15 @@
 Rails.application.routes.draw do
-  get 'movies/new'
+  
 
-  get 'movies/index'
+  resources :movies, shallow: true do 
+    resources :links, :defaults => { :linkable => "Movie" } do 
+      resources :votes, only: [:create, :destroy]
 
-  get 'movies/show'
+      resources :comments, :defaults => { :commentable => "Link" }
 
-  get 'movies/edit'
+    end
 
-  get 'links/index'
-
-  get 'links/show'
-
-  get 'links/edit'
+  end
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
