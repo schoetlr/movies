@@ -1,2 +1,9 @@
-<h1>Links#show</h1>
-<p>Find me in app/views/links/show.html.erb</p>
+<h1><%= @movie.name %></h1>
+
+<p><%= @movie.description %></p>
+
+<% @links.each do |link| %>
+
+  <a href="<%= link.url %>"><%= link.url %></a>
+
+<% end %>
